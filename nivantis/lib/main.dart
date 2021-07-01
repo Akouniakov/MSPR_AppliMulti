@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firedart/firedart.dart';
+import 'package:nivantis/Models/Medicament.dart';
 import 'preferences_store.dart';
 
 void main() {
@@ -54,9 +55,18 @@ class _MyHomePageState extends State<MyHomePage> {
     var firebaseAuth = FirebaseAuth.initialize(
         'AIzaSyAnXJ-R3GbZ7saYELcjA7qYo2BdEC8U9_I',
         await PreferencesStore.create());
+    var firestore = Firestore('nivantis-80b50', auth: firebaseAuth);
     await firebaseAuth.signIn('admin@nivantis.fr', 'JeSuisLAdminDeNivantis_01');
     var user = await firebaseAuth.getUser();
     print(user.email);
+    var collection = await firestore.collection("Medicaments").get();
+    List<Medicament> list = [];
+
+    collection.forEach((Document element) {
+      var medicament = Medicament.fromMap(element.map, element.id);
+      list.add(medicament);
+    });
+    print(list[0].name);
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
