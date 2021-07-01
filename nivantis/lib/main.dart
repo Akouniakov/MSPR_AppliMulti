@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:firedart/firedart.dart';
+import 'preferences_store.dart';
 
 void main() {
   runApp(MyApp());
@@ -48,7 +50,13 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
 
-  void _incrementCounter() {
+  void _incrementCounter() async {
+    var firebaseAuth = FirebaseAuth.initialize(
+        'AIzaSyAnXJ-R3GbZ7saYELcjA7qYo2BdEC8U9_I',
+        await PreferencesStore.create());
+    await firebaseAuth.signIn('admin@nivantis.fr', 'JeSuisLAdminDeNivantis_01');
+    var user = await firebaseAuth.getUser();
+    print(user.email);
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
