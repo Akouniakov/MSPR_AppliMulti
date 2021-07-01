@@ -1,35 +1,31 @@
+
 import 'package:flutter/material.dart';
+<<<<<<< Updated upstream
 import 'package:firedart/firedart.dart';
 import 'package:nivantis/Models/Medicament.dart';
 import 'preferences_store.dart';
+=======
+import 'package:get/get.dart';
+import 'package:nivantis/presentation/navigation/navigation.dart';
+import 'package:nivantis/presentation/widgets/navAppBar.dart';
+>>>>>>> Stashed changes
+
+import 'presentation/views/version1/version1_view.dart';
 
 void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
+  GetMaterialApp(
+      title: 'titre',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
+      // home: Main(),
+      home: Version1View(),
+      initialRoute: "/",
+      getPages: Nav.routes,
+  );
 }
 
+<<<<<<< Updated upstream
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key? key, required this.title}) : super(key: key);
 
@@ -119,13 +115,18 @@ class _MyHomePageState extends State<MyHomePage> {
               style: Theme.of(context).textTheme.headline4,
             ),
           ],
+=======
+Widget Main() {
+  print("1");
+  return Column(
+    children: [  
+      navAppBar(),
+      Scaffold(
+        body: Center(
+          child: Text("main")
+>>>>>>> Stashed changes
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+      )
+    ]
+  );
 }
